@@ -1,26 +1,24 @@
 /*
 PREREQUISITES:
-- child elements inside the form limited at two-generations
-- <input> elements should only be enclosed with <label> tag (not by using <label for="">)
-- DOM tree structure:
-    <form>
-      <div class="grid">
-        <label><input></label>
-        <input>
-        <input>
-      </div>
-    </form>
-- element arrangements should be styled using CSS-grid
+- COMPLIANCE TO REF-MARKUP
 
 FUNCTIONS:
 - automatic attribute-value assignment for NAME-attribute in an INPUT-element
 */
 
 function forminit(formid){
-  var inputs = document.getElementById('formid').children[0].getElementsByTagName('input');
+  var formid = document.getElementById(formid),
+      fieldsets = formid.children;
 
-  for(l=0; l<inputs.length; l++){
-    inputs[l].setAttribute('name', this.id);
+  for(l=0; l<(fieldsets.length-1); l++){
+    var inputs = formid.children[l].getElementsByTagName('input'),
+        labels = formid.children[l].getElementsByTagName('label');
+
+    for(k=0; k<inputs.length; k++){
+      inputs[k].setAttribute('name', this.id);
+    }
+    for(k=0; k<labels.length; k++){
+      labels[k].setAttribute('for', this.id);
+    }
   }
-
 }
