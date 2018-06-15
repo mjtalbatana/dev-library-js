@@ -5,7 +5,7 @@ pre-requisites:
 1.1 Information images (figure sets the CSS-BOX dimensions)
 <figure>
   <img
-  id=""  -> static, required for referencing
+  data-...=""  -> static, required for referencing
   src=""  -> dynamically assigned via JavaScript
   alt="">  -> dynamically assigned via JavaScript
   <figcaption>text</figcaption>  -> dynamically assigned via JavaScript
@@ -14,7 +14,7 @@ pre-requisites:
 1.2 Containers set with background images
 <div
 class="bgimg"   -> required for DOM filtering
-id=""  -> required for referencing
+data-...=""  -> required for referencing
 title="" -> dynamically assigned via JavaScript
 style="background-image:url();"  -> dynamically assigned via JavaScript
 >
@@ -24,7 +24,7 @@ style="background-image:url();"  -> dynamically assigned via JavaScript
 1.3 Logo/brand/entity protected, centralized, & referenced images
 <div
 class="logoimg"  -> required for DOM filtering
-id=""  -> required for referencing
+data-...=""  -> required for referencing
 title="" -> dynamically assigned via JavaScript
 style="background-image:url();"  -> dynamically assigned via JavaScript (have two url sources for local & web)
 >
@@ -111,32 +111,34 @@ function imageloader(data1,data2,data3){
   }
 
   if(data2 !== null){
-    var webheaderref = Object.keys(data2);
+    var target = 'bgimg',
+        webheaderref = Object.keys(data2);
 
     if(typeof(webheaderref.find(value => value === webheader)) !== undefined){
-      var dom_images = document.getElementsByClassName('bgimg');
+      var dom_images = document.getElementsByClassName(target);
 
       for(i=0; i < dom_images.length; i++){
         var dom_image = dom_images[i];
-        dom_image.style.backgroundImage = 'url(' + data2[webheader][dom_image.id]['url'] + ')';
-        dom_image.title = data2[webheader][dom_image.id]['title'];
+        dom_image.style.backgroundImage = 'url(' + data2[webheader][dom_image.dataset[target]]['url'] + ')';
+        dom_image.title = data2[webheader][dom_image.dataset[target]]['title'];
       }
     }
   }
 
   if(data3 !== null){
-    var dom_images = document.getElementsByClassName('logoimg');
+    var target = 'logoimg',
+        dom_images = document.getElementsByClassName(target);
 
     for(i=0; i < dom_images.length; i++){
       var dom_image = dom_images[i];
 
-      if(currenturl.search('127.0.0.1') !== -1 || current.search('localhost') !== -1){
-        dom_image.style.backgroundImage = 'url(' + data3[webheader][dom_image.id]['url'] + ')';
+      if(currenturl.search('127.0.0.1') !== -1 || currenturl.search('localhost') !== -1){
+        dom_image.style.backgroundImage = 'url(' + data3[dom_image.dataset[target]]['local'] + ')';
       } else{
-        dom_image.style.backgroundImage = 'url(' + data3[webheader][dom_image.id]['secondary'] + ')';
+        dom_image.style.backgroundImage = 'url(' + data3[dom_image.dataset[target]]['url'] + ')';
       }
 
-      dom_image.title = data3[webheader][dom_image.id]['title'];
+      dom_image.title = data3[dom_image.dataset[target]]['title'];
     }
   }
 }
