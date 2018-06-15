@@ -4,15 +4,15 @@ function arrayShuffle(array){
       arrayi_shuffle = [],
       array_new = [];
 
-  for(l=0; l<length; l++){
-    arrayi_ref.push(l);
+  for(i=0; i<length; i++){
+    arrayi_ref.push(i);
   }
-  for(l=0; l<length; l++){
+  for(i=0; i<length; i++){
     var n = parseInt(Math.random()*(arrayi_ref.length));
     arrayi_shuffle.push(arrayi_ref.splice(n,1));
   }
-  for(l=0; l<length; l++){
-    array_new.push(array[arrayi_shuffle[l][0]]);
+  for(i=0; i<length; i++){
+    array_new.push(array[arrayi_shuffle[i][0]]);
   }
-  return arrayi_shuffle;
+  return array_new;
 }
