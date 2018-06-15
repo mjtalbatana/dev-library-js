@@ -76,7 +76,7 @@ data3 - asset icons/logos
 
 */
 
-function imageloader(data1,data2){
+function imageloader(data1,data2,data3){
   var dom_meta = document.querySelector('meta[name="webheader"]'),
       currenturl = window.location.href,
       webheader;
@@ -89,6 +89,9 @@ function imageloader(data1,data2){
     } else{
       webheader = currenturl.split('/')
       webheader = webheader[webheader.length-1];
+      if(webheader.search('.') !== -1){
+        webheader = webheader.split('.')[0];
+      }
     }
   }
 
