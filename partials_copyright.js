@@ -1,5 +1,4 @@
-jsCopyright('Michael James Turiano Albatana');
-function jsCopyright(author){
+function loadCopyright(author='Michael James Turiano Albatana'){
   var date = new Date(),
       text = 'Copyright' + '&nbsp;' + '&copy;' + date.getFullYear() + '&nbsp;' + author,
       footer = document.createElement('footer');
