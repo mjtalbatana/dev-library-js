@@ -5,8 +5,8 @@
     /*----------------------------
     FOR JAVASCRIPT
     {
-      uri_primary: null,
-      uri_cdn: null,
+      url_primary: null,
+      url_cdn: null,
       defer: null,
       async: null
     },
@@ -21,56 +21,56 @@
   var parameter_a =
   [
     {
-      uri_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js",
-      uri_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js",
+      url_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js",
+      url_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js",
       defer: null,
       async: null
     },
     {
-      uri_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js",
-      uri_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js",
+      url_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js",
+      url_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js",
       defer: null,
       async: null
     },
     {
-      uri_primary: "assets/js/script.js",
-      uri_cdn: null,
+      url_primary: "assets/js/script.js",
+      url_cdn: null,
       defer: true,
       async: null
     },
     {
-      uri_primary: "assets/layouts.js",
-      uri_cdn: null,
+      url_primary: "assets/layouts.js",
+      url_cdn: null,
       defer: true,
       async: null
     },
     {
-      uri_primary: "assets/js/animation.js",
-      uri_cdn: null,
+      url_primary: "assets/js/animation.js",
+      url_cdn: null,
       defer: true,
       async: null
     },
     {
-      uri_primary: "assets/js/interactive.js",
-      uri_cdn: null,
+      url_primary: "assets/js/interactive.js",
+      url_cdn: null,
       defer: true,
       async: null
     },
     {
-      uri_primary: "../dev-library-js/imageloader.js",
-      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/imageloader.js",
+      url_primary: "../dev-library-js/imageloader.js",
+      url_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/imageloader.js",
       defer: null,
       async: null
     },
     {
-      uri_primary: "../dev-library-js/arrayshuffle.js",
-      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/arrayshuffle.js",
+      url_primary: "../dev-library-js/arrayshuffle.js",
+      url_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/arrayshuffle.js",
       defer: null,
       async: null
     },
     {
-      uri_primary: "../dev-library-js/linkloader.js",
-      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/linkoader.js",
+      url_primary: "../dev-library-js/linkloader.js",
+      url_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/linkoader.js",
       defer: null,
       async: null
     },
@@ -114,12 +114,12 @@
     temp.type = 'application/javascript';
     scripts.push(temp);
 
-    if(parameter_a[l]['uri_cdn'] != null && address == 'localserver'){
-      temp.src = parameter_a[l]['uri_primary'];
-    } else if(parameter_a[l]['uri_cdn'] != null && address == 'webserver'){
-      temp.src = parameter_a[l]['uri_cdn'];
+    if(parameter_a[l]['url_cdn'] != null && address == 'localserver'){
+      temp.src = parameter_a[l]['url_primary'];
+    } else if(parameter_a[l]['url_cdn'] != null && address == 'webserver'){
+      temp.src = parameter_a[l]['url_cdn'];
     } else{
-      temp.src = parameter_a[l]['uri_primary'];
+      temp.src = parameter_a[l]['url_primary'];
     }
     if(parameter_a[l]['defer'] != null){
       temp.defer = true;
