@@ -72,11 +72,21 @@ data3 - asset icons/logos
     }
   }
 
+  data4 =
+  {
+    'id':
+    {
+      'url': 'url',
+      'secondary': 'url',
+      'title': 'title'
+    }
+  }
+
 }
 
 */
 
-function imageloader(data1,data2,data3){
+function imageloader(data1,data2,data3,data4){
   var dom_meta = document.querySelector('meta[name="webheader"]'),
       currenturl = window.location.href,
       webheader;
@@ -96,16 +106,17 @@ function imageloader(data1,data2,data3){
   }
 
   if(data1 !== null){
-    var webheaderref = Object.keys(data1);
+    var target = 'img',
+        webheaderref = Object.keys(data1);
 
     if(typeof(webheaderref.find(value => value === webheader)) !== undefined){
       var dom_figures = document.getElementsByTagName('figure');
 
       for(i=0; i < dom_figures.length; i++){
         var dom_image = dom_figures[i].querySelector('img');
-        dom_image.src = data1[webheader][dom_image.id]['url'];
+        dom_image.src = data1[webheader][dom_image.dataset[target]]['url'];
         dom_image.title =
-        dom_image.alt = data1[webheader][dom_image.id]['title'];
+        dom_image.alt = data1[webheader][dom_image.dataset[target]]['title'];
       }
     }
   }
@@ -126,6 +137,20 @@ function imageloader(data1,data2,data3){
   }
 
   if(data3 !== null){
+    var target = 'thumbimg',
+        webheaderref = Object.keys(data3);
+    if(typeof(webheaderref.find(value => value === webheader)) !== undefined){
+      var dom_images = document.getElementsByClassName(target);
+
+      for(i=0; i < dom_images.length; i++){
+        var dom_image = dom_images[i];
+        dom_image.style.backgroundImage = 'url(' +  data3[webheader][dom_image.dataset[target]]['url'] + ')';
+        dom_image.title = data3[webheader][dom_image.dataset[target]]['title'];
+      }
+    }
+  }
+
+  if(data4 !== null){
     var target = 'logoimg',
         dom_images = document.getElementsByClassName(target);
 
@@ -133,12 +158,12 @@ function imageloader(data1,data2,data3){
       var dom_image = dom_images[i];
 
       if(currenturl.search('127.0.0.1') !== -1 || currenturl.search('localhost') !== -1){
-        dom_image.style.backgroundImage = 'url(' + data3[dom_image.dataset[target]]['local'] + ')';
+        dom_image.style.backgroundImage = 'url(' + data4[dom_image.dataset[target]]['local'] + ')';
       } else{
-        dom_image.style.backgroundImage = 'url(' + data3[dom_image.dataset[target]]['url'] + ')';
+        dom_image.style.backgroundImage = 'url(' + data4[dom_image.dataset[target]]['url'] + ')';
       }
 
-      dom_image.title = data3[dom_image.dataset[target]]['title'];
+      dom_image.title = data4[dom_image.dataset[target]]['title'];
     }
   }
 }
