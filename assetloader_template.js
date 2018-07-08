@@ -2,78 +2,148 @@
 
 (function(){
   // PARAMETER INPUTS: =========================================================
-  var parameters =
+    /*----------------------------
+    FOR JAVASCRIPT
+    {
+      uri_primary: null,
+      uri_cdn: null,
+      defer: null,
+      async: null
+    },
+    FOR NON-JAVASCRIPT
+    {
+      href_primary: null,
+      href_cloud: null,
+      rel: null,  // author, help, icon, license, stylesheet
+      type: null, // MIME-classification
+    },
+    ----------------------------*/
+  var parameter_a =
   [
     {
-      url_local: "../../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js",
-      url_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js",
+      uri_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js",
+      uri_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js",
       defer: null,
-      async: null,
+      async: null
     },
     {
-      url_local: "../../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js",
-      url_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js",
+      uri_primary: "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js",
+      uri_cdn: "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js",
       defer: null,
-      async: null,
-    }
-  ];
-
-
+      async: null
+    },
+    {
+      uri_primary: "assets/js/script.js",
+      uri_cdn: null,
+      defer: true,
+      async: null
+    },
+    {
+      uri_primary: "assets/layouts.js",
+      uri_cdn: null,
+      defer: true,
+      async: null
+    },
+    {
+      uri_primary: "assets/js/animation.js",
+      uri_cdn: null,
+      defer: true,
+      async: null
+    },
+    {
+      uri_primary: "assets/js/interactive.js",
+      uri_cdn: null,
+      defer: true,
+      async: null
+    },
+    {
+      uri_primary: "../dev-library-js/imageloader.js",
+      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/imageloader.js",
+      defer: null,
+      async: null
+    },
+    {
+      uri_primary: "../dev-library-js/arrayshuffle.js",
+      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/arrayshuffle.js",
+      defer: null,
+      async: null
+    },
+    {
+      uri_primary: "../dev-library-js/linkloader.js",
+      uri_cdn: "https://raw.githubusercontent.com/mjtalbatana/dev-library-js/master/linkoader.js",
+      defer: null,
+      async: null
+    },
+  ],
+    parameter_b =
+  [
+    {
+      href_primary: "../dev-assets-common/mjta-v01.ico",
+      href_cloud: "https://raw.githubusercontent.com/mjtalbatana/profile-logo/master/mjta-v01.ico",
+      rel: "icon",
+      type: "image/x-icon" // MIME-classification
+    },
+    {
+      href_primary: "../dev-assets/font/NotoSans/NotoSans-Regular.ttf",
+      href_cloud: "https://fonts.googleapis.com/css?family=Noto+Sans",
+      rel: 'stylesheet',  // author, help, icon, license, stylesheet
+      type: 'font/ttf', // MIME-classification
+    },
+  ]
 
 
   // PLEASE DO NOT MODIFY ANYTHING PRECEEDING THIS LINE OF CODE =================
-  //DECLARATIONS
-  var script = [],
+
+  //DECLARATIONS-------------------------------------------------------------------------
+  var temp = '';
+      scripts = [],
       address = window.location.origin;
 
-      script[1] =
-      script[2] =
-      script[3] =
-      script[4] =
-      script[5] =
-      script[6] = document.createElement('script');
-
-
-  //LOCAL/WEB CHECK
-  if(address.search('127.0.0.1') === -1 || address.search('localhost') === -1){
+  //LOCAL/WEB CHECK----------------------------------------------------------------------
+  if(address.search('127.0.0.1') == -1 || address.search('localhost') == -1){
     address = 'localserver';
   } else{
     address = 'webserver';
   }
 
-  //TYPE ASSIGNMENT
-  script[1].type =
-  script[2].type =
-  script[3].type =
-  script[4].type =
-  script[5].type =
-  script[6].type = 'application/javascript';
 
-  //DEFER ASSIGNMENT
-  script[3].defer =
-  script[4].defer =
-  script[5].defer =
-  script[6].defer = true;
+  //MARKUP AND ATTRIBUTE BUILDER---------------------------------------------------------
+  for(l=0; l<parameter_a.length; l++){
+    // window['script'+l] = document.createElement('script');
+    temp = document.createElement('script');
+    temp.type = 'application/javascript';
+    scripts.push(temp);
 
-  //ASYNC ASSIGNMENT
-  // node.async = true;
-
-
-  if(address == 'localserver'){
-    script[1].src = "../../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js";
-    script[2].src = "../../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js";
-  } else{
-    script[1].src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js";
-    script[2].src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js";
+    if(parameter_a[l]['uri_cdn'] != null && address == 'localserver'){
+      temp.src = parameter_a[l]['uri_primary'];
+    } else if(parameter_a[l]['uri_cdn'] != null && address == 'webserver'){
+      temp.src = parameter_a[l]['uri_cdn'];
+    } else{
+      temp.src = parameter_a[l]['uri_primary'];
+    }
+    if(parameter_a[l]['defer'] != null){
+      temp.defer = true;
+    }
+    if(parameter_a[l]['async'] != null){
+      temp.async = true;
+    }
   }
 
-  script[3].src = "assets/js/script.js";
-  script[4].src = "assets/layouts.js";
-  script[5].src = "assets/js/animation.js";
-  script[6].src = "assets/js/interactive.js";
+  // if(address == 'localserver'){
+  //   script1.src = "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js";
+  //   script2.src = "../dev-modules/greensock-js/greensock-js-1.20.4/src/minified/plugins/ScrollToPlugin.min.js";
+  // } else{
+  //   script1.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js";
+  //   script2.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/ScrollToPlugin.min.js";
+  // }
 
-  for(l=0; l<script.length; l++){
-    document.getElementsByTagName('head')[0].insertBefore(script[l],null);
+  // script3.src = "assets/js/script.js";
+  // script4.src = "assets/layouts.js";
+  // script5.src = "assets/js/animation.js";
+  // script6.src = "assets/js/interactive.js";
+
+  for(l=0; l<scripts.length; l++){
+    document.getElementsByTagName('head')[0].insertBefore(scripts[l],null);
   }
 })();
 
