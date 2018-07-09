@@ -8,14 +8,17 @@ function fetchapi(array, action, targetid='snackbar'){
     ]
   */
 
+  form =
+  {
+    // key: value;
+  }
+
+
+  url = 'urlpath.script'
+
+
+
   array = {
-    formkey: [
-      'key'
-    ],
-    formval: [
-      'value'
-    ],
-    url: "assets/php/fetchapi.php",
     method: "POST",
     credentials: "same-origin",
     /*
@@ -34,8 +37,8 @@ function fetchapi(array, action, targetid='snackbar'){
 
   var formData = new FormData();
 
-  for(l=0; l<array['formkey'].length; l++){
-    formData.append(array['formkey'][l], array['formvalue'][l]);
+  for(i in form){
+    formData.append(i, form[i]);
   }
 
   fetch(url, {
