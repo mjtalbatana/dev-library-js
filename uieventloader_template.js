@@ -1,4 +1,6 @@
-var data
+var data;
+
+
 
 function uiEventLoader(data){
   var uievents = document.querySelector('.uievent');
