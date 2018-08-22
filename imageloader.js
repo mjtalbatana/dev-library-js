@@ -157,7 +157,7 @@ function imageloader(data1,data2,data3,data4){
     for(i=0; i < dom_images.length; i++){
       var dom_image = dom_images[i];
 
-      if(currenturl.search('127.0.0.1') !== -1 || currenturl.search('localhost') !== -1){
+      if(currenturl.search('127.0.0.1') !== -1 || currenturl.search('localhost') !== -1 || currenturl.search('192.168.') !== -1){
         dom_image.style.backgroundImage = 'url(' + data4[dom_image.dataset[target]]['local'] + ')';
       } else{
         dom_image.style.backgroundImage = 'url(' + data4[dom_image.dataset[target]]['url'] + ')';
